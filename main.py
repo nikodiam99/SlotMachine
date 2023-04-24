@@ -13,7 +13,7 @@ def deposit():
             print("Please enter a number.")
 
     return amount
-
+# helooo
 def get_number_of_lines():
     while True:
         lines = input("Enter the number of lines to bet on (1-" + str(MAX_LINES) + ")? ")
