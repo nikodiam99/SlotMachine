@@ -1,7 +1,35 @@
-# Slot machine main class
+# Slot machine program 
+import random
+
 MAX_LINES = 3
 MAX_BET = 100
 MIN_BET = 1
+
+ROWS = 3
+COLS = 3
+ # Dictionary
+symbol_count = {
+    "A": 2,
+    "B": 4,
+    "C": 6,
+    "D": 8
+}
+
+def get_slotmachine_spin(rows, cols, symbols):
+    all_symbols = []
+    for symbol, symbol_count in symbols.items():
+        for _ in range(symbol_count): # underscore is used instead of i if you dont care about counter to avoid unused variable.
+            all_symbols.append(symbol)
+
+    columns = []
+    for col in range(cols):
+        column = []
+        current_symbols = all_symbols[:] # the colon inside bracket is to make a copy of all symbols, instead of a reference of the same object.
+        for row in range(rows):
+            value = random.choice(all_symbols)
+    
+
+
 def deposit():
     while True:
         amount = input("How much would you like to deposit? $")
@@ -29,6 +57,7 @@ def get_number_of_lines():
             print("Please enter a number.")
 
     return lines
+
 def get_bet():
     while True:
         amount = input("How much would you like to bet on each line? $")
@@ -42,11 +71,19 @@ def get_bet():
             print("Please enter a number.")
 
     return amount
+
 def main():
     balance = deposit()
     lines = get_number_of_lines()
-    bet = get_bet()
-    total_bet = bet*lines
+    while True:
+        bet = get_bet()
+        total_bet = bet* lines
+
+        if total_bet > balance:
+            print(f"You do not have enough to bet that amount, your current balance is: ${balance}")
+        else:
+            break
+    
     print(f"You are betting ${bet} on {lines} lines.Total bet equals to: ${total_bet}")
 
 
